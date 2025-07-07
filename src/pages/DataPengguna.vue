@@ -107,7 +107,7 @@ const jamaahList = ref([])
 
 onMounted(async () => {
   try {
-    const res = await fetch('http://localhost:3000/jamaah')
+    const res = await fetch('/db.json')
     jamaahList.value = await res.json()
   } catch (error) {
     console.error('Gagal fetch data:', error)

@@ -44,7 +44,7 @@ const jamaah = ref(null)
 
 onMounted(async () => {
   try {
-    const res = await fetch(`http://localhost:3000/jamaah/${route.params.id}`)
+    const res = await fetch(`/db.json/${route.params.id}`)
     jamaah.value = await res.json()
   } catch (err) {
     console.error('Gagal memuat data jamaah:', err)
