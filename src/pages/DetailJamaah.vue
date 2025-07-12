@@ -28,7 +28,7 @@
 
     <router-link
       to="/data-pengguna"
-      class="text-blue-500 mt-4 inline-block hover:underline"
+      class="text-emerald-600 mt-4 inline-block hover:underline"
     >
       ← Kembali ke daftar jamaah
     </router-link>
@@ -44,8 +44,10 @@ const jamaah = ref(null)
 
 onMounted(async () => {
   try {
-    const res = await fetch(`/db.json/${route.params.id}`)
-    jamaah.value = await res.json()
+    const res = await fetch('/db.json')
+    const data = await res.json()
+    const id = parseInt(route.params.id)
+    jamaah.value = data.jamaah.find(j => j.id === id)
   } catch (err) {
     console.error('Gagal memuat data jamaah:', err)
   }

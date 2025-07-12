@@ -19,7 +19,12 @@
             :key="jamaah.id"
             class="border-b hover:bg-gray-100"
           >
-            <td class="p-3">
+            <td class="p-3 flex items-center gap-2">
+              <img
+                :src="jamaah.foto"
+                alt="Foto Jamaah"
+                class="w-10 h-10 rounded-full"
+              />
               <router-link
                 :to="`/data-pengguna/${jamaah.id}`"
                 class="text-emerald-600 hover:underline"
@@ -43,9 +48,17 @@
           <div class="sm:col-span-2">
             <a href="/" class="inline-flex items-center mb-4">
               <svg class="w-8 text-emerald-600" viewBox="0 0 24 24" fill="none">
-                <path d="M3 3h7v12H3zM3 17h7v4H3zM14 3h7v6h-7zM14 11h7v10h-7z" stroke="currentColor" stroke-width="2" />
+                <path
+                  d="M3 3h7v12H3zM3 17h7v4H3zM14 3h7v6h-7zM14 11h7v10h-7z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
               </svg>
-              <span class="ml-2 text-xl font-bold tracking-wide text-emerald-800 uppercase">InfoHaji</span>
+              <span
+                class="ml-2 text-xl font-bold tracking-wide text-emerald-800 uppercase"
+              >
+                InfoHaji
+              </span>
             </a>
             <p class="text-sm text-gray-700">
               InfoHaji menyajikan informasi seputar keberangkatan, persiapan, dan pelaksanaan ibadah Haji secara resmi dan akurat.
@@ -65,7 +78,11 @@
             </div>
             <div class="flex">
               <p class="mr-1 text-gray-800">Alamat:</p>
-              <a href="https://maps.google.com" class="text-emerald-600 hover:underline" target="_blank">
+              <a
+                href="https://maps.google.com"
+                class="text-emerald-600 hover:underline"
+                target="_blank"
+              >
                 Jl. Lapangan Banteng Barat No. 3-4, Jakarta
               </a>
             </div>
@@ -108,7 +125,8 @@ const jamaahList = ref([])
 onMounted(async () => {
   try {
     const res = await fetch('/db.json')
-    jamaahList.value = await res.json()
+    const data = await res.json()
+    jamaahList.value = data.jamaah // ✅ Ambil array-nya
   } catch (error) {
     console.error('Gagal fetch data:', error)
   }
